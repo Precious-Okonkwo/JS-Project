@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taskflow</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <header class="task-header">
+        <div class="header-logo">  
+            <i class="fa-solid fa-check"></i>
+            <h1>Task Flow</h1>
+        </div>
+        <p>PERSONAL PLANNER</p>
+    </header>
+
+    <main>
+        <section>
+            <div class="welcome-text"> 
+            <h2> YOUR SPACE. YOUR PACE</h2>
+            <span>Get things done</span>
+            <p>A little progress each day adds up. Here's your plan.</p>
+            </div>
+            <div class="summary-card-container">  
+                <div id="all-tasks" class="card-container">
+                    <span class="task-heading">All tasks</span>
+                    <span class="task-number">0</span>
+                    <P>on your list</P>
+                </div>
+
+                <div id="pending-tasks" class="card-container">
+                    <span class="task-heading">Pending</span>
+                    <span class="task-number">0</span>
+                    <P>still to do</P>
+                </div>
+
+                <div id="completed-tasks" class="card-container">
+                    <span class="task-heading">Completed</span>
+                    <span class="task-number">0</span>
+                    <P>nicely done</P>
+                </div>
+
+            </div>
+            
+        </section>
+
+        <section class="add-new-task">
+            <h2 id="form-header"> &plus; Add New Task</h2>
+            <p>write it down,then take it one step at a time.</p>
+
+            <form class="task-form">
+                <div class="form-group">
+                    <label for="task-title">Task Title*</label>
+                    <input type="text" id="task-title" name="task-title" placeholder="group meeting by 9PM">
+                </div>
+                <div class="form-group">
+                    <label for="task-description">Description</label>
+                    <textarea name="task-description" id="task-description" rows="3" maxlength="500"></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="task-priority">Priority*</label>
+                        <select   name="task-priority" id="task-priority" required>
+                            <option value="select" selected>Select</option>
+                            <option value="low">Low</option>
+                            <option value="medium" >Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-due-date">Due Date*</label>
+                        <input type="datetime-local" name="task-due-date" id="task-due-date" required>
+                    </div>
+                </div>
+
+                <div class="action">
+                    <button type="submit" id="submit-btn"
+                    class="primary-btn" >Add Task</button>
+                    <button type="button" id="cancel-btn"
+                    class="secondary-btn" hidden>
+                       Cancel Edit
+                   </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="task-list">
+
+            <div class="top-task">
+
+                <div class="task-list-header">
+                    <h2 id="task-list-tittle">Your tasks</h2>
+                    <p id="summary" class="summary">0 task shown</p>
+                </div>
+
+                <div class="select-status" role="group" aria-label="select-status-task">
+                    <button class="select-status-btn active">All</button>
+                    <button class="select-status-btn">Pending</button>
+                    <button class="select-status-btn">Completed</button>
+                </div>
+
+            </div>
+            <div>
+                
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" placeholder="search your tasks">
+                </div>
+            </div>
+
+           <ul id="task-flow" class="task-flow"></ul>
+           <p id="empty task" class="empty" hidden> No tasks to show yet</p>
+        </section>  
+    </main>
+    
+</body>
+</html>
