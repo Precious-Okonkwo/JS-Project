@@ -6,6 +6,7 @@
     <title>Taskflow</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" referrerpolicy="no-referrer" />
+    <crsipt src="script.js" defer></script>
 
 </head>
 <body>
@@ -51,7 +52,7 @@
             <h2 id="form-header"> &plus; Add New Task</h2>
             <p>write it down,then take it one step at a time.</p>
 
-            <form class="task-form">
+            <form class="task-form" id="task-form">
                 <div class="form-group">
                     <label for="task-title">Task Title*</label>
                     <input type="text" id="task-title" name="task-title" placeholder="group meeting by 9PM">
@@ -108,12 +109,12 @@
                 
                 <div class="search-container">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="search" placeholder="search your tasks">
+                    <input type="text" class="search-input" placeholder="search your tasks">
                 </div>
             </div>
 
            <ul id="task-flow" class="task-flow"></ul>
-           <p id="empty task" class="empty" hidden> No tasks to show yet</p>
+           <p id="empty-task" class="empty" hidden> No tasks to show yet</p>
         </section>  
     </main>
     

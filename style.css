@@ -100,7 +100,7 @@
 
   .summary-card-container {
     display: grid;
-    grid-template-columns: repeat(1fr);
+    grid-template-columns: 1fr;
     gap: 10px;
     width: 92%;
     max-width: 1000px;
@@ -235,6 +235,11 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.task-list-header {
+  display: flex; 
+  flex-direction: column; 
   margin-bottom: 20px;
 }
 
@@ -281,12 +286,166 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
+.search-container {
+  position: relative;
+  width: 100%;
+}
+
+.search-container i {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #333;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 14px 12px 40px;
+  font-size: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  outline: none;
+}
+
+.task-flow {
+  list-style: none; 
+  display: grid; 
+  gap: 0.75rem;
+}
+
+.flow {
+  border: 1px solid var(--border-color);
+  border-left: 5px solid var(--text-color);
+  border-radius: 10px;
+  background-color: var(--card);
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.flow-top { 
+  display: flex; 
+  gap: 0.7rem; 
+  align-items: flex-start; 
+}
+
+.flow-top input[type="checkbox"] { 
+  width: 20px; 
+  height: 20px; 
+  margin-top: 0.2rem; 
+  cursor: pointer; 
+  flex-shrink: 0; 
+}
+
+.flow-title { 
+  font-weight: 700; 
+  word-break: break-word; 
+}
+
+.flow-description { 
+  color: var(--text-color); 
+  font-size: 0.9rem; 
+  word-break: break-word; 
+}
+
+.flow.completed .flow-title { 
+  text-decoration: line-through; 
+  color: var(--text-color); 
+}
+
+.flow.completed { 
+  background: #f9fafb; 
+}
+
+.flow-meta { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 0.5rem; 
+  font-size: 0.8rem; 
+  align-items: center; 
+}
+
+.tag {
+  padding: 0.15rem 0.6rem;
+  border-radius: 9px;
+  color: #fff;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.tag.low { 
+  background: var(--low); 
+}
+
+.tag.medium { 
+  background: var(--medium); 
+}
+
+.tag.high { 
+  background: var(--high); 
+}
+
+.due { 
+  color: var(--muted); 
+}
+
+.due.overdue { 
+  color: var(--danger); 
+  font-weight: 600; 
+}
+
+.status { 
+  font-weight: 600; 
+}
+
+.status.done { 
+  color: var(--success); 
+}
+
+.flow-actions { 
+  display: flex; 
+  gap: 0.5rem; 
+}
+
+.small-btn {
+  flex: 1;
+  border: 1px solid var(--border-color);
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.45rem;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+}
+.small-btn:hover { 
+  background: #f3f4f6; 
+}
+
+.small-btn.delete { 
+  color: var(--danger); 
+  border-color: #fecaca; 
+}
+
+.small-btn.delete:hover { 
+  background: #fef2f2; 
+}
+
+.empty { 
+  text-align: center; 
+  color: var(--muted-color); 
+  padding: 1.5rem 0; 
+}
+
+
 
 @media (min-width: 700px) {
-    .header-logo h1 {
+  .header-logo h1 {
       font-size: 2rem;
     }
-  }
+  
 
   .task-header p {
     padding: 10px;
@@ -326,9 +485,26 @@
 
   .select-status {
     width: auto;
+    gap: 4px;
   }
 
   .select-status-btn {
     padding: 6px 16px;
     flex: none;
   }
+
+  .flow { 
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: center; 
+  }
+
+  .flow-actions { 
+    flex-shrink: 0; 
+  }
+
+  .small-btn { 
+    flex: none; 
+    padding: 0.45rem 0.9rem; 
+  }
+}
