@@ -315,7 +315,7 @@
   gap: 0.75rem;
 }
 
-.flow {
+.task {
   border: 1px solid var(--border-color);
   border-left: 5px solid var(--text-color);
   border-radius: 10px;
@@ -326,13 +326,13 @@
   gap: 0.6rem;
 }
 
-.flow-top { 
+.task-top { 
   display: flex; 
   gap: 0.7rem; 
   align-items: flex-start; 
 }
 
-.flow-top input[type="checkbox"] { 
+.task-top input[type="checkbox"] { 
   width: 20px; 
   height: 20px; 
   margin-top: 0.2rem; 
@@ -340,27 +340,27 @@
   flex-shrink: 0; 
 }
 
-.flow-title { 
+.task-title { 
   font-weight: 700; 
   word-break: break-word; 
 }
 
-.flow-description { 
+.task-description { 
   color: var(--text-color); 
   font-size: 0.9rem; 
   word-break: break-word; 
 }
 
-.flow.completed .flow-title { 
+.task.completed .task-title { 
   text-decoration: line-through; 
   color: var(--text-color); 
 }
 
-.flow.completed { 
+.task.completed { 
   background: #f9fafb; 
 }
 
-.flow-meta { 
+.task-meta { 
   display: flex; 
   flex-wrap: wrap; 
   gap: 0.5rem; 
@@ -405,7 +405,7 @@
   color: var(--success); 
 }
 
-.flow-actions { 
+.task-actions { 
   display: flex; 
   gap: 0.5rem; 
 }
@@ -493,13 +493,13 @@
     flex: none;
   }
 
-  .flow { 
+  .task { 
     flex-direction: row; 
     justify-content: space-between; 
     align-items: center; 
   }
 
-  .flow-actions { 
+  .task-actions { 
     flex-shrink: 0; 
   }
 

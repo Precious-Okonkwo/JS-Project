@@ -45,10 +45,10 @@ function generateId() {
 }
 
 function todayString() {
-  const d = new Date();
-  const month = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return `${d.getFullYear()}-${month}-${day}`;
+  const today = new Date();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  return `${today.getFullYear()}-${month}-${day}`;
 }
 
 function formatDate(dateStr) {
@@ -66,7 +66,7 @@ function showError(input, message) {
 }
 
 function clearErrors() {
-  [titleInput, descInput, priorityInput, dueDateInput].forEach((el) => showError(el, ""));
+  [titleInput, descriptionInput, priorityInput, dueDateInput].forEach((el) => showError(el, ""));
 }
 
 function validateForm() {
@@ -137,4 +137,83 @@ function toggleComplete(id) {
     saveTasks();
     renderTasks();
   }
+}
+
+
+//----------- Form Handling ----------------
+function startEdit(id) {
+  const task = tasks.find((t) => t.id === id);
+  if (!task) return;
+
+  idInput.value = task.id;
+  titleInput.value = task.title;
+  descInput.value = task.description;
+  priorityInput.value = task.priority;
+  dueDateInput.value = task.dueDate;
+
+  formTitle.textContent = "Edit Task";
+  submitBtn.textContent = "Update Task";
+  cancelBtn.hidden = false;
+  clearErrors();
+  form.scrollIntoView({ behavior: "smooth", block: "start" });
+  titleInput.focus();
+}
+
+function resetForm() {
+  form.reset();
+  idInput.value = "";
+  formTitle.textContent = "Add a Task";
+  submitBtn.textContent = "Add Task";
+  cancelBtn.hidden = true;
+  clearErrors();
+}
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (!validateForm()) return;
+
+  const data = {
+    title: titleInput.value.trim(),
+    description: descInput.value.trim(),
+    priority: priorityInput.value,
+    dueDate: dueDateInput.value,
+  };
+
+  if (idInput.value) {
+    updateTask(idInput.value, data);
+  } else {
+    addTask(data);
+  }
+
+  saveTasks();
+  resetForm();
+  renderTasks();
+});
+
+cancelBtn.addEventListener("click", resetForm);
+
+// This Clears an error as soon as the user fixes the field
+[titleInput, descInput, priorityInput, dueDateInput].forEach((el) => {
+  el.addEventListener("input", () => showError(el, ""));
+});
+
+//----------- Task Filter Control -------------
+statusButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    currentStatus = btn.dataset.status;
+    statusButtons.forEach((b) => b.classList.toggle("active", b === btn));
+    renderTasks();
+  });
+});
+
+function getVisibleTasks() {
+  let list = tasks;
+  if (currentStatus === "pending") list = tasks.status((t) => !t.completed);
+  if (currentStatus === "completed") list = tasks.status((t) => t.completed);
+
+  // Pending first, then by due date
+  return [...list].sort((a, b) => {
+    if (a.completed !== b.completed) return a.completed ? 1 : -1;
+    return a.dueDate.localeCompare(b.dueDate);
+  });
 }
