@@ -6,7 +6,7 @@
     <title>Taskflow</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" referrerpolicy="no-referrer" />
-    <crsipt src="script.js" defer></script>
+    
 
 </head>
 <body>
@@ -28,19 +28,19 @@
             <div class="summary-card-container">  
                 <div id="all-tasks" class="card-container">
                     <span class="task-heading">All tasks</span>
-                    <span class="task-number">0</span>
+                    <span id="all-tasks-count">0</span>
                     <P>on your list</P>
                 </div>
 
                 <div id="pending-tasks" class="card-container">
                     <span class="task-heading">Pending</span>
-                    <span class="task-number">0</span>
+                    <span id="pending-tasks-count">0</span>
                     <P>still to do</P>
                 </div>
 
                 <div id="completed-tasks" class="card-container">
                     <span class="task-heading">Completed</span>
-                    <span class="task-number">0</span>
+                    <span id="completed-tasks-count">0</span>
                     <P>nicely done</P>
                 </div>
 
@@ -52,29 +52,35 @@
             <h2 id="form-header"> &plus; Add New Task</h2>
             <p>write it down,then take it one step at a time.</p>
 
-            <form class="task-form" id="task-form">
+            <form class="task-form" id="task-form" novalidate>
+                <input type="hidden" id="task-id" />
+
                 <div class="form-group">
                     <label for="task-title">Task Title*</label>
-                    <input type="text" id="task-title" name="task-title" placeholder="group meeting by 9PM">
+                    <input name="task-title" type="text" id="task-title" name="task-title" placeholder="group meeting by 9PM">
+                    <span class="error" id="task-title-error"></span>
                 </div>
                 <div class="form-group">
                     <label for="task-description">Description</label>
                     <textarea name="task-description" id="task-description" rows="3" maxlength="500"></textarea>
+                    <span class="error" id="task-description-error"></span>
                 </div>
                 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="task-priority">Priority*</label>
                         <select   name="task-priority" id="task-priority" required>
-                            <option value="select" selected>Select</option>
+                            <option value="">Select</option>
                             <option value="low">Low</option>
                             <option value="medium" >Medium</option>
                             <option value="high">High</option>
                         </select>
+                        <span class="error" id="task-priority-error"></span>
                     </div>
                     <div class="form-group">
                         <label for="task-due-date">Due Date*</label>
                         <input type="datetime-local" name="task-due-date" id="task-due-date" required>
+                        <span class="error" id="task-due-date-error"></span>
                     </div>
                 </div>
 
@@ -98,10 +104,10 @@
                     <p id="summary" class="summary">0 task shown</p>
                 </div>
 
-                <div class="select-status" role="group" aria-label="select-status-task">
-                    <button class="select-status-btn active">All</button>
-                    <button class="select-status-btn">Pending</button>
-                    <button class="select-status-btn">Completed</button>
+                <div  class="select-status" role="group" aria-label="select-status-task">
+                    <button type="button" class="select-status-btn active" data-status="all">All</button>
+                    <button type="button" class="select-status-btn" data-status="pending">Pending</button>
+                    <button type="button" class="select-status-btn" data-status="completed">Completed</button>
                 </div>
 
             </div>
@@ -109,7 +115,7 @@
                 
                 <div class="search-container">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" class="search-input" placeholder="search your tasks">
+                    <input name="search-input" id="search-input" type="text" class="search-input" placeholder="search your tasks">
                 </div>
             </div>
 
@@ -118,5 +124,6 @@
         </section>  
     </main>
     
+    <script src="script.js"></script>
 </body>
 </html>

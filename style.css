@@ -124,7 +124,9 @@
     color: #0f0d0d;
   }
 
-  .task-number {
+  #all-tasks-count,
+  #pending-tasks-count,
+  #completed-tasks-count {
     font-size: 2rem;
     font-weight: bold;
     color: var(--text-color);
@@ -166,6 +168,7 @@
     margin-bottom: 7px;
   }
 
+  
   input, textarea, select {
     width: 100%;
     padding: 12px;
@@ -183,6 +186,16 @@
   border-color: #2ecc71;
 }
 
+.invalid { 
+  border-color: var(--danger) !important; 
+}
+
+.error { 
+  color: var(--danger); 
+  font-size: 0.8rem; 
+  min-height: 1rem; 
+  margin-top: 0.2rem; 
+}
 
 .form-row {
   display: flex;
@@ -317,7 +330,6 @@
 
 .task {
   border: 1px solid var(--border-color);
-  border-left: 5px solid var(--text-color);
   border-radius: 10px;
   background-color: var(--card);
   padding: 0.85rem;
